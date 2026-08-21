@@ -1,5 +1,14 @@
+using Application.Interfaces.Configs;
+using Application.Interfaces.Histories;
+using Application.Interfaces.Partidas;
+using Application.Interfaces.Questions;
+using Application.Interfaces.Users;
+using Application.Services;
+using Infrastructure.Mongo.Commands;
+using Infrastructure.Mongo.Querys;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Bson.Serialization.Serializers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +25,27 @@ builder.Services.AddSwaggerGen();
 // custom
 var connectionString = builder.Configuration["ConnectionString"];
 builder.Services.AddDbContext<AppDbContext>(option => option.UseMongoDB(connectionString));
+
+
+builder.Services.AddScoped<IConfigQuery, ConfigQuery>();
+builder.Services.AddScoped<IConfigCommand, ConfigCommand>();
+builder.Services.AddScoped<IConfigService, ConfigService>();
+
+builder.Services.AddScoped<IUserQuery, UserQuery>();
+builder.Services.AddScoped<IUserCommand, UserCommand>();
+builder.Services.AddScoped<IUserService, UserService>();
+
+builder.Services.AddScoped<IHistoryQuery, HistoryQuery>();
+builder.Services.AddScoped<IHistoryCommand, HistoryCommand>();
+builder.Services.AddScoped<IHistoryService, HistoryService>();
+
+builder.Services.AddScoped<IQuestionQuery, QuestionQuery>();
+builder.Services.AddScoped<IQuestionCommand, QuestionCommand>();
+builder.Services.AddScoped<IQuestionService, QuestionService>();
+
+
+builder.Services.AddScoped<IPartidaService, PartidaService>();
+
 
 var app = builder.Build();
 
