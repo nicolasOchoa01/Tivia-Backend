@@ -11,21 +11,26 @@ namespace Application.Services
     {
         private readonly IUserCommand _command;
         private readonly IUserQuery _query;
+        private readonly IUserMapper _mapper;
 
-        public UserService(IUserCommand command, IUserQuery query)
+        public UserService(IUserCommand command, IUserQuery query, IUserMapper mapper)
         {
             _command = command;
             _query = query;
+            _mapper = mapper;
         }
 
-        public Task DeleteUser(UserRequest user)
+        public async Task DeleteUser(UserRequest request)
         {
-            throw new NotImplementedException();
+            var user = _mapper.MapRequest(request);
+            await _command.DeleteUser(user);
         }
 
-        public Task<List<UserResponse>> GetAllUsers()
+        public async Task<List<UserResponse>> GetAllUsers()
         {
-            throw new NotImplementedException();
+            var users = await _query.GetAllUsers();
+            var response = _mapper.MapResponseList(users);
+            return response;
         }
 
         public Task<UserResponse> Login(string username, string password)

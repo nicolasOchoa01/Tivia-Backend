@@ -52,7 +52,7 @@ namespace Infrastructure.Persistence
                 entity.Property(h => h.Id)
                     .HasConversion<string>()
                     .ValueGeneratedOnAdd();
-                entity.Property(h => h.User).HasElementName("user");
+                entity.Property(h => h.Username).HasElementName("user");
                 entity.Property(h => h.Score).HasElementName("score");
                 entity.Property(h => h.QuestionsTotal).HasElementName("questionsTotal");
                 entity.Property(h => h.QuestionsCorrect).HasElementName("questionsCorrect");

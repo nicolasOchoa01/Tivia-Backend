@@ -3,6 +3,7 @@ using Application.Interfaces.Histories;
 using Application.Interfaces.Partidas;
 using Application.Interfaces.Questions;
 using Application.Interfaces.Users;
+using Application.Mappers;
 using Application.Services;
 using Infrastructure.Mongo.Commands;
 using Infrastructure.Mongo.Querys;
@@ -30,19 +31,22 @@ builder.Services.AddDbContext<AppDbContext>(option => option.UseMongoDB(connecti
 builder.Services.AddScoped<IConfigQuery, ConfigQuery>();
 builder.Services.AddScoped<IConfigCommand, ConfigCommand>();
 builder.Services.AddScoped<IConfigService, ConfigService>();
+builder.Services.AddScoped<IConfigMapper, ConfigMapper>();
 
 builder.Services.AddScoped<IUserQuery, UserQuery>();
 builder.Services.AddScoped<IUserCommand, UserCommand>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserMapper, UserMapper>();
 
 builder.Services.AddScoped<IHistoryQuery, HistoryQuery>();
 builder.Services.AddScoped<IHistoryCommand, HistoryCommand>();
 builder.Services.AddScoped<IHistoryService, HistoryService>();
+builder.Services.AddScoped<IHistoryMapper, HistoryMapper>();
 
 builder.Services.AddScoped<IQuestionQuery, QuestionQuery>();
 builder.Services.AddScoped<IQuestionCommand, QuestionCommand>();
 builder.Services.AddScoped<IQuestionService, QuestionService>();
-
+builder.Services.AddScoped<IQuestionMapper, QuestionMapper>();
 
 builder.Services.AddScoped<IPartidaService, PartidaService>();
 

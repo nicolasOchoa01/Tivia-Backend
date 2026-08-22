@@ -11,21 +11,26 @@ namespace Application.Services
     {
         private readonly IQuestionCommand _command;
         private readonly IQuestionQuery _query;
+        private readonly IQuestionMapper _mapper;
 
-        public QuestionService(IQuestionCommand command, IQuestionQuery query)
+        public QuestionService(IQuestionCommand command, IQuestionQuery query, IQuestionMapper mapper)
         {
             _command = command;
             _query = query;
+            _mapper = mapper;
         }
 
-        public Task<List<QuestionResponse>> GetQuestionsByCategory(string category, int cantidad)
+        public async Task<List<QuestionResponse>> GetQuestionsByCategory(string category, int cantidad)
         {
-            throw new NotImplementedException();
+            var questions = await _query.GetQuestionsByCategory(category, cantidad);
+            var response = _mapper.MapResponseList(questions);
+            return response;
         }
 
-        public Task SetQuestion(QuestionRequest question)
+        public async Task SetQuestion(QuestionRequest request)
         {
-            throw new NotImplementedException();
+            var question = _mapper.MapRequest(request);
+            await _command.SetQuestion(question);
         }
     }
 }

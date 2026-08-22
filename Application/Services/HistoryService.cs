@@ -11,26 +11,33 @@ namespace Application.Services
     {
         private readonly IHistoryCommand _command;
         private readonly IHistoryQuery _query;
+        private readonly IHistoryMapper _mapper;
 
-        public HistoryService(IHistoryCommand command, IHistoryQuery query)
+        public HistoryService(IHistoryCommand command, IHistoryQuery query, IHistoryMapper mapper)
         {
             _command = command;
             _query = query;
+            _mapper = mapper;
         }
 
-        public Task<List<HistoryResponse>> GetAllHistories()
+        public async Task<List<HistoryResponse>> GetAllHistories()
         {
-            throw new NotImplementedException();
+            var histories = await _query.GetAllHistories();
+            var response = _mapper.MapResponseList(histories);
+            return response;
         }
 
-        public Task<List<HistoryResponse>> GetHistoryByName(string name)
+        public async Task<List<HistoryResponse>> GetHistoryByName(string name)
         {
-            throw new NotImplementedException();
+            var histories = await _query.GetHistoryByName(name);
+            var response = _mapper.MapResponseList(histories);
+            return response;
         }
 
-        public Task SetHistory(HistoryRequest history)
+        public async Task SetHistory(HistoryRequest request)
         {
-            throw new NotImplementedException();
+            var history = _mapper.MapRequest(request);
+            await _command.SetHistory(history);
         }
     }
 }
