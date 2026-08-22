@@ -7,7 +7,7 @@ namespace Domain.Entities
     public class History
     {
         public string Id { get; set; }
-        public string User { get; set;  }
+        public string Username { get; set;  }
         public int Score { get; set; }
         public List<string> Category { get; set; }
         public int QuestionsTotal { get; set; }

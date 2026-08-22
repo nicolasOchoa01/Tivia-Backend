@@ -9,6 +9,15 @@ namespace Application.Services
 {
     public class UserService : IUserService
     {
+        private readonly IUserCommand _command;
+        private readonly IUserQuery _query;
+
+        public UserService(IUserCommand command, IUserQuery query)
+        {
+            _command = command;
+            _query = query;
+        }
+
         public Task DeleteUser(UserRequest user)
         {
             throw new NotImplementedException();

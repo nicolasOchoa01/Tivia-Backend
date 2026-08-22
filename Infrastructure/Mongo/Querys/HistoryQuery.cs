@@ -1,5 +1,7 @@
 ﻿using Application.Interfaces.Histories;
 using Domain.Entities;
+using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,14 +10,25 @@ namespace Infrastructure.Mongo.Querys
 {
     public class HistoryQuery : IHistoryQuery
     {
-        public Task<List<History>> GetAllHistories()
+        private readonly AppDbContext _context;
+
+        public HistoryQuery(AppDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task<List<History>> GetHistoryByName(string name)
+        public async Task<List<History>> GetAllHistories()
         {
-            throw new NotImplementedException();
+            return await _context.Histories.ToListAsync();
+        }
+
+        public async Task<List<History>> GetHistoryByName(string name)
+        {
+            var histories = await _context.Histories
+                .Where(h => h.Username == name)
+                .ToListAsync();
+
+            return histories;
         }
     }
 }

@@ -8,8 +8,16 @@ using System.Text;
 namespace Application.Services
 {
     public class HistoryService : IHistoryService
-
     {
+        private readonly IHistoryCommand _command;
+        private readonly IHistoryQuery _query;
+
+        public HistoryService(IHistoryCommand command, IHistoryQuery query)
+        {
+            _command = command;
+            _query = query;
+        }
+
         public Task<List<HistoryResponse>> GetAllHistories()
         {
             throw new NotImplementedException();

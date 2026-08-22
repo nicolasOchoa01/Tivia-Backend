@@ -9,6 +9,15 @@ namespace Application.Services
 {
     public class QuestionService : IQuestionService
     {
+        private readonly IQuestionCommand _command;
+        private readonly IQuestionQuery _query;
+
+        public QuestionService(IQuestionCommand command, IQuestionQuery query)
+        {
+            _command = command;
+            _query = query;
+        }
+
         public Task<List<QuestionResponse>> GetQuestionsByCategory(string category, int cantidad)
         {
             throw new NotImplementedException();

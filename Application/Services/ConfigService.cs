@@ -9,6 +9,15 @@ namespace Application.Services
 {
     public class ConfigService : IConfigService
     {
+        private readonly IConfigCommand _command;
+        private readonly IConfigQuery _query;
+
+        public ConfigService(IConfigCommand command, IConfigQuery query)
+        {
+            _command = command;
+            _query = query;
+        }
+
         public Task<List<ConfigResponse>> GetAllConfig()
         {
             throw new NotImplementedException();

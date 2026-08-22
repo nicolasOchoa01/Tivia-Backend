@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces.Users;
 using Domain.Entities;
+using Infrastructure.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,14 +9,23 @@ namespace Infrastructure.Mongo.Commands
 {
     public class UserCommand : IUserCommand
     {
-        public Task DeleteUser(User user)
+        private readonly AppDbContext _context;
+
+        public UserCommand(AppDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task SetUser(User user)
+        public async Task DeleteUser(User user)
         {
-            throw new NotImplementedException();
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task SetUser(User user)
+        {
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
         }
     }
 }

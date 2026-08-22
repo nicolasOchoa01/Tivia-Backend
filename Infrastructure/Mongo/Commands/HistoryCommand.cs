@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces.Histories;
 using Domain.Entities;
+using Infrastructure.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,9 +9,17 @@ namespace Infrastructure.Mongo.Commands
 {
     public class HistoryCommand : IHistoryCommand
     {
-        public Task SetHistory(History history)
+        private readonly AppDbContext _context;
+
+        public HistoryCommand(AppDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+
+        public async Task SetHistory(History history)
+        {
+            _context.Histories.Add(history);
+            await _context.SaveChangesAsync();
         }
     }
 }
