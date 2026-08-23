@@ -30,7 +30,7 @@ namespace trivia_c_.Controllers
         }
 
         [HttpGet("User")]
-        public async Task<IActionResult> GetAllUser(int id)
+        public async Task<IActionResult> GetAllUser()
         {
             var result = await _userService.GetAllUsers();
             return new JsonResult(result) { StatusCode = 200 };

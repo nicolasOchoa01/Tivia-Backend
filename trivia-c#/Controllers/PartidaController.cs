@@ -1,4 +1,5 @@
-﻿using Application.Interfaces.Partidas;
+﻿using Application.DTOs.Response;
+using Application.Interfaces.Partidas;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,7 @@ namespace trivia_c_.Controllers
         [HttpGet("Partida")]
         public async Task<IActionResult> GetNewPartida(Config config)
         {
-            var result = await _partidaService.GetPartida(config);
+            PartidaResponse result = await _partidaService.GetPartida(config);
             return new JsonResult(result) { StatusCode = 200 };
         }
     }

@@ -8,6 +8,6 @@ namespace Application.DTOs.Response
     public class PartidaResponse
     {
         public Config Config {  get; set; }
-        public List<Question> Questions { get; set; }
+        public List<QuestionResponse> Questions { get; set; }
     }
 }
