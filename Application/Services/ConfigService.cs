@@ -27,10 +27,12 @@ namespace Application.Services
             return response;
         }
 
-        public async Task SetConfig(ConfigRequest request)
+        public async Task<ConfigResponse> SetConfig(ConfigRequest request)
         {
             var config = _mapper.MapRequest(request);
             await _command.SetConfig(config);
+            var response = _mapper.MapResponse(config);
+            return response;
         }
     }
 }

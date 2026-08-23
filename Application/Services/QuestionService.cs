@@ -27,10 +27,12 @@ namespace Application.Services
             return response;
         }
 
-        public async Task SetQuestion(QuestionRequest request)
+        public async Task<QuestionResponse> SetQuestion(QuestionRequest request)
         {
             var question = _mapper.MapRequest(request);
             await _command.SetQuestion(question);
+            var response = _mapper.MapResponse(question);
+            return response;
         }
     }
 }

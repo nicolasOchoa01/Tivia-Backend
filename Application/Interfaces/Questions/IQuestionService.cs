@@ -9,7 +9,7 @@ namespace Application.Interfaces.Questions
 {
     public interface IQuestionService
     {
-        Task SetQuestion(QuestionRequest question);
+        Task<QuestionResponse> SetQuestion(QuestionRequest request);
         Task<List<QuestionResponse>> GetQuestionsByCategory(string category, int cantidad);
     }
 }

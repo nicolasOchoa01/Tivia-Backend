@@ -20,10 +20,11 @@ namespace Application.Services
             _mapper = mapper;
         }
 
-        public async Task DeleteUser(UserRequest request)
+        public async Task<bool> DeleteUser(UserRequest request)
         {
             var user = _mapper.MapRequest(request);
             await _command.DeleteUser(user);
+            return true;
         }
 
         public async Task<List<UserResponse>> GetAllUsers()
@@ -38,14 +39,17 @@ namespace Application.Services
             throw new NotImplementedException();
         }
 
-        public Task<UserResponse> Register(string usernameOrEmail, string password)
+        public Task<UserResponse> Register(string username, string email, string password)
         {
             throw new NotImplementedException();
         }
 
-        public Task SetUser(UserRequest user)
+        public async Task<UserResponse> SetUser(UserRequest request)
         {
-            throw new NotImplementedException();
+            var user = _mapper.MapRequest(request);
+            await _command.SetUser(user);
+            var response = _mapper.MapResponse(user);
+            return response;
         }
     }
 }

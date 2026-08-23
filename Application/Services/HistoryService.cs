@@ -34,10 +34,12 @@ namespace Application.Services
             return response;
         }
 
-        public async Task SetHistory(HistoryRequest request)
+        public async Task<HistoryResponse> SetHistory(HistoryRequest request)
         {
             var history = _mapper.MapRequest(request);
             await _command.SetHistory(history);
+            var response = _mapper.MapResponse(history);
+            return response;
         }
     }
 }

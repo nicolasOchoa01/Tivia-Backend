@@ -9,10 +9,10 @@ namespace Application.Interfaces.Users
 {
     public interface IUserService
     {
-        Task SetUser(UserRequest user);
-        Task DeleteUser(UserRequest user);
+        Task<UserResponse> SetUser(UserRequest request);
+        Task<bool> DeleteUser(UserRequest request);
         Task<List<UserResponse>> GetAllUsers();
         Task<UserResponse> Login(string username, string password);
-        Task<UserResponse> Register(string usernameOrEmail, string password);
+        Task<UserResponse> Register(string username, string email, string password);
     }
 }

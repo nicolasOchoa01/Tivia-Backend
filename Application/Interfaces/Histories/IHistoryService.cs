@@ -9,7 +9,7 @@ namespace Application.Interfaces.Histories
 {
     public interface IHistoryService
     {
-        Task SetHistory(HistoryRequest history);
+        Task<HistoryResponse> SetHistory(HistoryRequest request);
         Task<List<HistoryResponse>> GetHistoryByName(string name);
         Task<List<HistoryResponse>> GetAllHistories();
 
