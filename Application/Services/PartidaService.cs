@@ -23,7 +23,7 @@ namespace Application.Services
             int numberForCategory = config.NumberQuestions / config.Category.Count;
 
             foreach (string category in config.Category) {
-                var questionsByCategory = await _questionService.GetQuestionsByCategory(category, config.NumberQuestions);
+                var questionsByCategory = await _questionService.GetQuestionsByCategory(category, numberForCategory);
                 questions.AddRange(questionsByCategory);
             }
             

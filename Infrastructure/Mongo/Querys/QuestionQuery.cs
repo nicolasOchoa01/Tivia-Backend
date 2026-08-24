@@ -20,6 +20,7 @@ namespace Infrastructure.Mongo.Querys
         {
             var questions = await _context.Questions
                 .Where(q => q.Category == category)
+                .Take(cantidad)
                 .ToListAsync();
 
             return questions;
