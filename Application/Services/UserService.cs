@@ -34,12 +34,12 @@ namespace Application.Services
             return response;
         }
 
-        public Task<UserResponse> Login(string username, string password)
+        public Task<UserResponse> Login(UserLogin user)
         {
             throw new NotImplementedException();
         }
 
-        public Task<UserResponse> Register(string username, string email, string password)
+        public Task<UserResponse> Register(UserRequest user)
         {
             throw new NotImplementedException();
         }

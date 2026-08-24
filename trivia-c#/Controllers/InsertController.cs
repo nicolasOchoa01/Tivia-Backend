@@ -24,28 +24,28 @@ namespace trivia_c_.Controllers
         }
 
         [HttpPost("User")]
-        public async Task<IActionResult> SetUser(UserRequest user)
+        public async Task<IActionResult> SetUser([FromBody]UserRequest user)
         {
             var result = await _userService.SetUser(user);
             return new JsonResult(result) { StatusCode = 201 };
         }
 
         [HttpPost("Config")]
-        public async Task<IActionResult> SetConfig(ConfigRequest config)
+        public async Task<IActionResult> SetConfig([FromBody]ConfigRequest config)
         {
             var result = await _configService.SetConfig(config);
             return new JsonResult(result) { StatusCode = 201 };
         }
 
         [HttpPost("Question")]
-        public async Task<IActionResult> SetQuestion(QuestionRequest question)
+        public async Task<IActionResult> SetQuestion([FromBody]QuestionRequest question)
         {
             var result = await _questionService.SetQuestion(question);
             return new JsonResult(result) { StatusCode = 201 };
         }
 
         [HttpPost("History")]
-        public async Task<IActionResult> SetHistory(HistoryRequest history)
+        public async Task<IActionResult> SetHistory([FromBody]HistoryRequest history)
         {
             var result = await _historyService.SetHistory(history);
             return new JsonResult(result) { StatusCode = 201 };

@@ -1,4 +1,5 @@
-﻿using Application.Interfaces.Users;
+﻿using Application.DTOs.Request;
+using Application.Interfaces.Users;
 using Microsoft.AspNetCore.Mvc;
 
 namespace trivia_c_.Controllers
@@ -14,16 +15,16 @@ namespace trivia_c_.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> Login(string username, string password)
+        public async Task<IActionResult> Login([FromBody]UserLogin user)
         {
-            var result = await _userService.Login(username, password);
+            var result = await _userService.Login(user);
             return new JsonResult(result) { StatusCode = 200 };
         }
 
         [HttpPost("Register")]
-        public async Task<IActionResult> Register(string username, string email, string password)
+        public async Task<IActionResult> Register([FromBody]UserRequest user)
         {
-            var result = await _userService.Register(username, email, password);
+            var result = await _userService.Register(user);
             return new JsonResult(result) { StatusCode = 200 };
         }
     }

@@ -12,7 +12,7 @@ namespace Application.Interfaces.Users
         Task<UserResponse> SetUser(UserRequest request);
         Task<bool> DeleteUser(UserRequest request);
         Task<List<UserResponse>> GetAllUsers();
-        Task<UserResponse> Login(string username, string password);
-        Task<UserResponse> Register(string username, string email, string password);
+        Task<UserResponse> Login(UserLogin user);
+        Task<UserResponse> Register(UserRequest user);
     }
 }
