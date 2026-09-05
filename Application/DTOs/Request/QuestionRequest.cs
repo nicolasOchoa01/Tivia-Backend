@@ -6,7 +6,7 @@ namespace Application.DTOs.Request
 {
     public class QuestionRequest
     {
-        public string QuestionName { get; set; }
+        public string Question { get; set; }
         public List<string> Options { get; set; }
         public string Answer { get; set; }
         public string Category { get; set; }

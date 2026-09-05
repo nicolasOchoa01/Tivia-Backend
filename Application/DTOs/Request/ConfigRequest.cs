@@ -6,7 +6,9 @@ namespace Application.DTOs.Request
 {
     public class ConfigRequest
     {
+        public string UserId { get; set; }
         public bool Timer { get; set; }
+        public string Name { get; set; }
         public int Seconds { get; set; }
         public int NumberQuestions { get; set; }
         public bool MultipleChoice { get; set; }

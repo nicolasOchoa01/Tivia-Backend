@@ -8,6 +8,7 @@ namespace Application.Interfaces.Users
     public interface IUserQuery
     {
         Task<List<User>> GetAllUsers();
+        Task<User> GetUserById(string id);
         Task<User> GetUserByName(string name);
         Task<User> GetUserByEmail(string email);
     }

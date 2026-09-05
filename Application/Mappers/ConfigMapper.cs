@@ -15,6 +15,7 @@ namespace Application.Mappers
         {
             Config config = new Config();
 
+            config.Name = request.Name;
             config.Random = request.Random;
             config.MultipleChoice = request.MultipleChoice;
             config.NumberQuestions = request.NumberQuestions;
@@ -42,6 +43,7 @@ namespace Application.Mappers
             ConfigResponse response = new ConfigResponse();
 
             response.Id = config.Id;
+            response.Name = config.Name;
             response.Random = config.Random;
             response.MultipleChoice = config.MultipleChoice;
             response.NumberQuestions = config.NumberQuestions;

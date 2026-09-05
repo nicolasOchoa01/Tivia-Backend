@@ -34,6 +34,7 @@ namespace Infrastructure.Persistence
                 entity.Property(u => u.Email).HasElementName("email");
                 entity.Property(u => u.Password).HasElementName("password");
                 entity.Property(u => u.TotalScore).HasElementName("totalScore");
+                entity.Property(u => u.Configs).HasElementName("configs");
             });
 
             modelBuilder.Entity<Config>(entity => {
@@ -43,6 +44,7 @@ namespace Infrastructure.Persistence
                     .HasConversion<StringToObjectIdConverter>()
                     .HasValueGenerator<StringObjectIdValueGenerator>()
                     .ValueGeneratedOnAdd();
+                entity.Property(c => c.Name).HasElementName("name");
                 entity.Property(c => c.Timer).HasElementName("timer");
                 entity.Property(c => c.Seconds).HasElementName("seconds");
                 entity.Property(c => c.NumberQuestions).HasElementName("numberQuestions");

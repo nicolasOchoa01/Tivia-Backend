@@ -21,5 +21,41 @@ namespace Infrastructure.Mongo.Querys
         {
             return await _context.Configs.ToListAsync();
         }
+
+        public Task<Config> GetConfig(string id)
+        {
+            return _context.Configs.FirstOrDefaultAsync(c => c.Id == id);
+        }
+
+        public Task<List<Config>> GetDefaultsConfig()
+        {
+            return _context.Configs.Where(c => 
+                c.Name == "standard" | 
+                c.Name == "expert" |
+                c.Name == "easy")
+                .ToListAsync();   
+        }
+
+        public async Task<List<Config>> GetPersonalConfig(string userId)
+        {
+            var user = await _context.Users
+                .Where(u => u.Id == userId)
+                .Select(u => u.Configs)
+                .FirstOrDefaultAsync();
+
+
+            if (user == null || !user.Any())
+            {
+                return new List<Config>();
+            }
+
+            var configs = await _context.Configs
+                .Where(c => user.Contains(c.Id))
+                .ToListAsync();
+
+            return configs;
+            
+        }
+
     }
 }

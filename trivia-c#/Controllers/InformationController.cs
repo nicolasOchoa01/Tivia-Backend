@@ -23,9 +23,9 @@ namespace trivia_c_.Controllers
         }
 
         [HttpGet("Config")]
-        public async Task<IActionResult> GetAllConfig()
+        public async Task<IActionResult> GetAllConfig([FromQuery]string userId)
         {
-            var result = await _configService.GetAllConfig();
+            var result = await _configService.GetAllConfig(userId);
             return new JsonResult(result) { StatusCode = 200 };
         }
 

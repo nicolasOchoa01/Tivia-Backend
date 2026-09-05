@@ -10,6 +10,7 @@ namespace Application.Interfaces.Configs
     public interface IConfigService
     {
         Task<ConfigResponse> SetConfig(ConfigRequest request);
-        Task<List<ConfigResponse>> GetAllConfig();
+        Task<AllConfigsResponse> GetAllConfig(string userId);
+        Task<ConfigResponse> GetConfig(string id);
     }
 }

@@ -18,6 +18,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 
+// Habilitar CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173", "https://triviados-dev.netlify.app")
+                  .AllowAnyMethod()
+                  .AllowAnyHeader();
+        });
+});
 
 // swagger
 builder.Services.AddEndpointsApiExplorer();
@@ -59,6 +70,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("AllowFrontend");
 
 app.UseHttpsRedirection();
 

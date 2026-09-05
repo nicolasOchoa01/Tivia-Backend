@@ -8,6 +8,6 @@ namespace Application.Interfaces.Partidas
 {
     public interface IPartidaService
     {
-        Task<PartidaResponse> GetPartida(Config config);
+        Task<PartidaResponse> GetPartida(string configId);
     }
 }

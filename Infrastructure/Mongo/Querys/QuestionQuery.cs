@@ -25,5 +25,28 @@ namespace Infrastructure.Mongo.Querys
 
             return questions;
         }
+
+        public async Task<List<Question>> GetQuestionsRandom(int cantidad)
+        {
+            var allIds = await _context.Questions
+                .Select(q => q.Id)
+                .ToListAsync();
+
+            if (allIds.Count == 0)
+            {
+                return new List<Question>();
+            }
+
+            var randomIds = allIds
+                .OrderBy(id => Guid.NewGuid())
+                .Take(cantidad)
+                .ToList();
+
+            var questions = await _context.Questions
+                .Where(q => randomIds.Contains(q.Id))
+                .ToListAsync();
+
+            return questions;
+        }
     }
 }

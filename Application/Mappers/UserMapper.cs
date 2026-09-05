@@ -39,8 +39,10 @@ namespace Application.Mappers
         {
             var response = new UserResponse();
 
+            response.Id = user.Id;
             response.Name = user.Name;
             response.TotalScore = user.TotalScore;
+            response.Configs = user.Configs;
 
             return response;
         }

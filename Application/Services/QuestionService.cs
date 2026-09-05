@@ -27,6 +27,13 @@ namespace Application.Services
             return response;
         }
 
+        public async Task<List<QuestionResponse>> GetQuestionsRandom(int cantidad)
+        {
+            var questions = await _query.GetQuestionsRandom(cantidad);
+            var response = _mapper.MapResponseList(questions);
+            return response;
+        }
+
         public async Task<QuestionResponse> SetQuestion(QuestionRequest request)
         {
             var question = _mapper.MapRequest(request);

@@ -1,6 +1,7 @@
 ﻿using Application.Interfaces.Users;
 using Domain.Entities;
 using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -25,6 +26,12 @@ namespace Infrastructure.Mongo.Commands
         public async Task SetUser(User user)
         {
             _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task Update(User user)
+        {
+            _context.Users.Update(user);
             await _context.SaveChangesAsync();
         }
     }

@@ -33,7 +33,7 @@ namespace trivia_c_.Controllers
         [HttpPost("Config")]
         public async Task<IActionResult> SetConfig([FromBody]ConfigRequest config)
         {
-            var result = await _configService.SetConfig(config);
+            var result = await _userService.SetConfig(config);
             return new JsonResult(result) { StatusCode = 201 };
         }
 

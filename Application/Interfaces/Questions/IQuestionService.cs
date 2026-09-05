@@ -11,5 +11,6 @@ namespace Application.Interfaces.Questions
     {
         Task<QuestionResponse> SetQuestion(QuestionRequest request);
         Task<List<QuestionResponse>> GetQuestionsByCategory(string category, int cantidad);
+        Task<List<QuestionResponse>> GetQuestionsRandom(int cantidad);
     }
 }

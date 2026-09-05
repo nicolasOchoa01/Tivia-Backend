@@ -18,7 +18,7 @@ namespace Application.Mappers
 
             question.Answer = request.Answer;
             question.Options = request.Options;
-            question.QuestionName = request.QuestionName;
+            question.QuestionName = request.Question;
             question.Category = request.Category;
 
             return question;
@@ -43,7 +43,7 @@ namespace Application.Mappers
             response.Id = question.Id;
             response.Answer = question.Answer;
             response.Options = question.Options;
-            response.QuestionName = question.QuestionName;
+            response.Question = question.QuestionName;
             response.Category = question.Category;
 
             return response;

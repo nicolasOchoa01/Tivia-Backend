@@ -7,6 +7,7 @@ namespace Application.DTOs.Response
     public class ConfigResponse
     {
         public string Id { get; set; }
+        public string Name { get; set; }
         public bool Timer { get; set; }
         public int Seconds { get; set; }
         public int NumberQuestions { get; set; }

@@ -9,5 +9,6 @@ namespace Application.Interfaces.Users
     {
         Task SetUser(User user);
         Task DeleteUser(User user);
+        Task Update(User user);
     }
 }

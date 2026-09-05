@@ -4,6 +4,7 @@ using Application.Interfaces.Configs;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using System.Text;
 
 namespace Application.Services
@@ -20,15 +21,32 @@ namespace Application.Services
             _mapper = mapper;
         }
 
-        public async Task<List<ConfigResponse>> GetAllConfig()
+        public async Task<AllConfigsResponse> GetAllConfig(string userId)
         {
-            var configs = await _query.GetAllConfig();
-            var response = _mapper.MapResponseList(configs);
+            var defualts = await _query.GetDefaultsConfig();
+            var personalConfigs = await _query.GetPersonalConfig(userId);
+            var responsePersonal = _mapper.MapResponseList(personalConfigs); 
+            var responseDefaults = _mapper.MapResponseList(defualts);
+
+            var allConfigs = new AllConfigsResponse();
+            allConfigs.Standard = responseDefaults.Find(config => config.Name == "standard");
+            allConfigs.Expert = responseDefaults.Find(config => config.Name == "expert");
+            allConfigs.Easy = responseDefaults.Find(config => config.Name == "easy");
+            allConfigs.PersonalConfigs = responsePersonal;
+
+            return allConfigs;
+        }
+
+        public async Task<ConfigResponse> GetConfig(string id)
+        {
+            var config = await _query.GetConfig(id);
+            var response = _mapper.MapResponse(config);
             return response;
         }
 
         public async Task<ConfigResponse> SetConfig(ConfigRequest request)
         {
+
             var config = _mapper.MapRequest(request);
             await _command.SetConfig(config);
             var response = _mapper.MapResponse(config);

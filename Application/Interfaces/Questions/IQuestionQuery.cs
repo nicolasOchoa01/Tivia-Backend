@@ -8,5 +8,6 @@ namespace Application.Interfaces.Questions
     public interface IQuestionQuery
     {
         Task<List<Question>> GetQuestionsByCategory(string category, int cantidad);
+        Task<List<Question>> GetQuestionsRandom(int cantidad);
     }
 }

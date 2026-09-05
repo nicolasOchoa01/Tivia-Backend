@@ -27,6 +27,11 @@ namespace Infrastructure.Mongo.Querys
             return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
         }
 
+        public async Task<User> GetUserById(string id)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+        }
+
         public async Task<User> GetUserByName(string name)
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.Name == name);
