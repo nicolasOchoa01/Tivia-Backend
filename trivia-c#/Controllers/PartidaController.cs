@@ -15,8 +15,8 @@ namespace trivia_c_.Controllers
             _partidaService = partidaService;
         }
 
-        [HttpPost("Partida")]
-        public async Task<IActionResult> GetNewPartida([FromBody]string configId)
+        [HttpGet("Partida")]
+        public async Task<IActionResult> GetNewPartida([FromQuery]string configId)
         {
             PartidaResponse result = await _partidaService.GetPartida(configId);
             return new JsonResult(result) { StatusCode = 200 };
