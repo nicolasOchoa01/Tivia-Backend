@@ -45,14 +45,37 @@ namespace Application.Services
             return response;
         }
 
-        public Task<UserResponse> Login(UserLogin user)
+        public async Task<UserResponse> Login(UserLogin login)
         {
-            throw new NotImplementedException();
+            var userByName = await _query.GetUserByName(login.NameOrEmail);
+            var userByEmail = await _query.GetUserByEmail(login.NameOrEmail);
+            
+            if (userByName != null)
+                if(login.Password == userByName.Password)
+                    return _mapper.MapResponse(userByName);
+                else
+                    throw new InvalidOperationException("Contraseña incorrecta");
+            if (userByEmail != null)
+                if(login.Password == userByEmail.Password)
+                    return _mapper.MapResponse(userByEmail);
+                else
+                    throw new InvalidOperationException("Contraseña incorrecta");
+
+            throw new InvalidOperationException("El usuario no existe");
         }
 
-        public Task<UserResponse> Register(UserRequest user)
+        public async Task<UserResponse> Register(UserRequest register)
         {
-            throw new NotImplementedException();
+            var userByEmail = await _query.GetUserByEmail(register.Email);
+            var userByName = await _query.GetUserByName(register.Name);
+            if (userByEmail != null)
+                throw new InvalidOperationException("Ya existe un usuario con ese Email");
+            if (userByName != null)
+                throw new InvalidOperationException("Ya existe un usuario con ese Nombre");
+
+            var user = _mapper.MapRequest(register); 
+            await _command.SetUser(user);
+            return _mapper.MapResponse(user);
         }
 
         public async Task<ConfigResponse> SetConfig(ConfigRequest request, string userId)

@@ -17,15 +17,29 @@ namespace trivia_c_.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody]UserLogin user)
         {
-            var result = await _userService.Login(user);
-            return new JsonResult(result) { StatusCode = 200 };
+            try
+            {
+                var result = await _userService.Login(user);
+                return new JsonResult(result) { StatusCode = 200 };
+            }
+            catch (InvalidOperationException ex)
+            {
+                return new JsonResult(new { Error = ex.Message }) { StatusCode = 400 };
+            }
         }
 
         [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody]UserRequest user)
         {
-            var result = await _userService.Register(user);
-            return new JsonResult(result) { StatusCode = 200 };
+            try
+            {
+                var result = await _userService.Register(user);
+                return new JsonResult(result) { StatusCode = 200 };
+            }
+            catch (InvalidOperationException ex)
+            {
+                return new JsonResult(new { Error = ex.Message }) { StatusCode = 400 };
+            }
         }
     }
 }
