@@ -62,8 +62,9 @@ namespace Infrastructure.Persistence
                     .HasConversion<StringToObjectIdConverter>()
                     .HasValueGenerator<StringObjectIdValueGenerator>()
                     .ValueGeneratedOnAdd();
-                entity.Property(h => h.Username).HasElementName("user");
-                entity.HasIndex(u => u.Username);
+                entity.HasIndex(u => u.UserId);
+                entity.Property(h => h.UserId).HasElementName("userId");
+                entity.Property(h => h.Username).HasElementName("username");
                 entity.Property(h => h.Score).HasElementName("score");
                 entity.Property(h => h.QuestionsTotal).HasElementName("questionsTotal");
                 entity.Property(h => h.QuestionsCorrect).HasElementName("questionsCorrect");

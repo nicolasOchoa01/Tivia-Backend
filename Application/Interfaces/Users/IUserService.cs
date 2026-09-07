@@ -16,6 +16,6 @@ namespace Application.Interfaces.Users
         Task<List<UserResponse>> GetAllUsers();
         Task<UserResponse> Login(UserLogin user);
         Task<UserResponse> Register(UserRequest user);
-        Task<UserResponse> SetConfig(ConfigRequest config);
+        Task<ConfigResponse> SetConfig(ConfigRequest config, string userId);
     }
 }

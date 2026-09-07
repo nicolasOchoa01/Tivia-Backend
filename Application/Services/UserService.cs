@@ -55,14 +55,14 @@ namespace Application.Services
             throw new NotImplementedException();
         }
 
-        public async Task<UserResponse> SetConfig(ConfigRequest request)
+        public async Task<ConfigResponse> SetConfig(ConfigRequest request, string userId)
         {
-            var user = await _query.GetUserById(request.UserId);
+            var user = await _query.GetUserById(userId);
             var config = await _configService.SetConfig(request);
             user.Configs.Add(config.Id);
             await _command.Update(user);
-            var response = _mapper.MapResponse(user);
-            return response;
+            
+            return config;
         }
 
         public async Task<UserResponse> SetUser(UserRequest request)

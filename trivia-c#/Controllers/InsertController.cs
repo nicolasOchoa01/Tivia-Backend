@@ -30,10 +30,10 @@ namespace trivia_c_.Controllers
             return new JsonResult(result) { StatusCode = 201 };
         }
 
-        [HttpPost("Config")]
-        public async Task<IActionResult> SetConfig([FromBody]ConfigRequest config)
+        [HttpPost("Config/{userId}")]
+        public async Task<IActionResult> SetConfig([FromBody]ConfigRequest config, string userId)
         {
-            var result = await _userService.SetConfig(config);
+            var result = await _userService.SetConfig(config, userId);
             return new JsonResult(result) { StatusCode = 201 };
         }
 

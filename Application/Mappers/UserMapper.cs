@@ -19,6 +19,7 @@ namespace Application.Mappers
             user.Name = request.Name;
             user.Email = request.Email;
             user.Password = request.Password;
+            user.Configs = new List<string>();
 
             return user;
         }
