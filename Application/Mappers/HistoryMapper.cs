@@ -21,6 +21,7 @@ namespace Application.Mappers
             history.Seconds = request.Seconds;
             history.QuestionsTotal = request.QuestionsTotal;
             history.Date = request.Date;
+            history.UserId = request.UserId;
             history.Username = request.Username;
             history.MultipleChoice = request.MultipleChoice;
             history.QuestionsCorrect = request.QuestionsCorrect;
@@ -52,6 +53,7 @@ namespace Application.Mappers
             response.Seconds = history.Seconds;
             response.QuestionsTotal = history.QuestionsTotal;
             response.Date = history.Date;
+            response.UserId = history.UserId;
             response.Username = history.Username;
             response.MultipleChoice = history.MultipleChoice;
             response.QuestionsCorrect = history.QuestionsCorrect;

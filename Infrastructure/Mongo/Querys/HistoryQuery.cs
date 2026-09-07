@@ -22,10 +22,10 @@ namespace Infrastructure.Mongo.Querys
             return await _context.Histories.ToListAsync();
         }
 
-        public async Task<List<History>> GetHistoryByName(string name)
+        public async Task<List<History>> GetHistoryByUserId(string userId)
         {
             var histories = await _context.Histories
-                .Where(h => h.Username == name)
+                .Where(h => h.UserId == userId)
                 .ToListAsync();
 
             return histories;

@@ -27,9 +27,9 @@ namespace Application.Services
             return response;
         }
 
-        public async Task<List<HistoryResponse>> GetHistoryByName(string name)
+        public async Task<List<HistoryResponse>> GetHistoryByUserId(string userId)
         {
-            var histories = await _query.GetHistoryByName(name);
+            var histories = await _query.GetHistoryByUserId(userId);
             var response = _mapper.MapResponseList(histories);
             return response;
         }

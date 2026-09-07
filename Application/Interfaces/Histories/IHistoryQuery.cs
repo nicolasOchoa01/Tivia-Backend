@@ -7,7 +7,7 @@ namespace Application.Interfaces.Histories
 {
     public interface IHistoryQuery
     {
-        Task<List<History>> GetHistoryByName(string name);
+        Task<List<History>> GetHistoryByUserId(string userId);
         Task<List<History>> GetAllHistories();
     }
 }

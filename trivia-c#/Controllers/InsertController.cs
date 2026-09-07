@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace trivia_c_.Controllers
 {
-    [Route("api/Insert")]
+    [Route("api")]
     public class InsertController : Controller
     {
         private readonly IConfigService _configService;

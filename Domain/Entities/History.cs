@@ -7,6 +7,7 @@ namespace Domain.Entities
     public class History
     {
         public string Id { get; set; }
+        public string UserId { get; set; }
         public string Username { get; set;  }
         public int Score { get; set; }
         public List<string> Category { get; set; }
@@ -16,6 +17,6 @@ namespace Domain.Entities
         public bool Random { get; set; }
         public bool Timer { get; set; }
         public int Seconds { get; set; }
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
     }
 }

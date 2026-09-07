@@ -49,5 +49,12 @@ namespace trivia_c_.Controllers
             var result = await _historyService.GetAllHistories();
             return new JsonResult(result) {StatusCode = 200 };
         }
+
+        [HttpGet("History/{userId}")]
+        public async Task<IActionResult> GetHistoryByUserId(string userId)
+        {
+            var result = await _historyService.GetHistoryByUserId(userId);
+            return new JsonResult(result) { StatusCode = 200 };
+        }
     }
 }

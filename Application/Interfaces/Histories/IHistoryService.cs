@@ -10,7 +10,7 @@ namespace Application.Interfaces.Histories
     public interface IHistoryService
     {
         Task<HistoryResponse> SetHistory(HistoryRequest request);
-        Task<List<HistoryResponse>> GetHistoryByName(string name);
+        Task<List<HistoryResponse>> GetHistoryByUserId(string userId);
         Task<List<HistoryResponse>> GetAllHistories();
 
 
