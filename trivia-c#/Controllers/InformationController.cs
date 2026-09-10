@@ -36,6 +36,13 @@ namespace trivia_c_.Controllers
             return new JsonResult(result) { StatusCode = 200 };
         }
 
+        [HttpGet("User/{userId}")]
+        public async Task<IActionResult> GetUserById(string userId)
+        {
+            var result = await _userService.GetUser(userId);
+            return new JsonResult(result) { StatusCode = 200 };
+        }
+
         [HttpGet("Question")]
         public async Task<IActionResult> GetAllQuestionByCategory(string category, int cantidad)
         {
